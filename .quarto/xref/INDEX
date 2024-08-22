@@ -1,0 +1,59 @@
+{
+  "page1.qmd": {
+    "page1.html": "7b64697d"
+  },
+  "page2.qmd": {
+    "page2.html": "04d9eeab"
+  },
+  "page3.qmd": {
+    "page3.html": "a3901044"
+  },
+  "blog/2024-04-15/index.qmd": {
+    "index.html": "5375e284"
+  },
+  "blog.qmd": {
+    "blog.html": "14d2f1de"
+  },
+  "blog/2024-04-15/teste.qmd": {
+    "teste.html": "710e31fb"
+  },
+  "apl_trb/2024-04-15/confiablidade.qmd": {
+    "confiablidade.html": "e593d0cf"
+  },
+  "apl_trb/2024-04-15/APR_TRB_CONF.qmd": {
+    "APR_TRB_CONF.html": "8870af43"
+  },
+  "page4.qmd": {
+    "page4.html": "3fcd2b44"
+  },
+  "conte.qmd": {
+    "conte.html": "9a0069b4"
+  },
+  "conte/clusterizacao/clusterizacao.qmd": {
+    "clusterizacao.html": "3af1cfbc"
+  },
+  "blog/2024-05-03/cv.qmd": {
+    "cv.html": "9703b8b3"
+  },
+  "blog/2024-07-15/james_spfc_pos_copa_america.qmd": {
+    "james_spfc_pos_copa_america.html": "c8018e26"
+  },
+  "blog/2024-07-15/james_spfc.qmd": {
+    "james_spfc.html": "70fd065e"
+  },
+  "blog/2024-07-17/regularidade_time_zubeldia.qmd": {
+    "regularidade_time_zubeldia.html": "d20af251"
+  },
+  "blog/2024-07-25/olimpiadas Copia.qmd": {
+    "olimpiadas Copia.html": "cdcb3184"
+  },
+  "blog/2024-07-31/olimpiadas Copia.qmd": {
+    "olimpiadas Copia.html": "9c2e7290"
+  },
+  "0page1.qmd": {
+    "0page1.html": "731b8aed"
+  },
+  "apage1.qmd": {
+    "apage1.html": "d474bfdc"
+  }
+}
