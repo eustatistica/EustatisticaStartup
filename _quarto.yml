@@ -3,11 +3,11 @@ project:
   output-dir: docs
 
 website:
-  google-analytics: "G-MZCXLHBTFW"
+  google-analytics: "G-1Y9PT8DKMS"
   title: ""
   navbar:
     left:
-      - href: page1.qmd
+      - href: 0page1.qmd
         text: Início
       - href: page2.qmd
         text: Aplicações e Trabalhos
