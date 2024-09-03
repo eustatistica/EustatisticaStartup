@@ -1,0 +1,252 @@
+---
+title: 'Mapas no R - Uma Expansão de um Marco Olímpico'
+author: "Pedro Garcia"
+date: 2024-09-02
+date-format: DD/MM/YYYY
+image: logo2.png
+categories: [esportes, olimpíadas, gráficos, análise de dados, países, ggplot, mapas]
+description: ""
+language: _custom.yml
+page-break-after: always
+format:
+  html:
+   theme: darkly
+   toc: true
+   toc-location: right
+   toc-depth: 3
+   code-fold: true
+   code-summary: "Mostre o Código"
+   css: styles.css
+
+---
+
+## Introdução {.justify}
+
+
+
+::: columns
+::: {.column width="40%"}
+
+Anteriormente, trouxemos em um post uma [Análise das Olimpíadas](https://eustatistica.github.io/EustatisticaStartup/blog/2024-07-31/olimpiadas%20Copia.html) neste século e apresentamos dois gráficos interessantes sobre os países e sua representatividade feminina.
+
+Representatividade essa que alcançou o marco histórico de 50% de mulheres nos jogos olímpicos de 2024. Conforme podemos ver no visual temporal ao lado.
+
+Um dos gráficos usados no post mencionado, foi o de barras, que embora útil, possui limitações quando se trata de muitas categorias, o que pode dificultar a visualização clara dos dados. Para superar essa limitação, exploraremos outras formas de representação visual mais adequadas.
+
+Quando lidamos com variáveis envolvendo localizações, especialmente regiões, podemos utilizar mapas como um recurso visual poderoso. Os mapas nos permitem visualizar padrões geográficos e destacar áreas de interesse de maneira intuitiva e impactante.
+
+:::
+
+
+::: {.column width="7%"}
+
+:::
+
+::: {.column width="53%"}
+
+ 
+ 
+![](grafico_linhas2.mp4){fig-align="center" width="400"}
+ 
+ 
+ 
+:::
+:::
+
+
+
+## Abrindo Nossa Caixa de Ferramentas {.justify}
+
+```{r}
+#| fig-align: center
+#| echo: true
+#| warning: false
+#| message: false
+
+library(dplyr) 
+library(ggplot2)
+library(leaflet)
+library(rnaturalearth)
+library(rnaturalearthdata)
+library(sf)
+
+```
+
+Assim como um mecânico possui sua caixa de ferramentas para realizar seu trabalho, nós também temos a nossa no R. A seguir, vamos carregar alguns pacotes que utilizaremos ao longo da análise. Assim como uma chave de fenda tem uma função específica, cada pacote no R também tem seu propósito. Por exemplo, o ggplot2 é nossa ferramenta principal para a criação de gráficos. Recomendo fortemente que você explore cada uma dessas funcionalidades, caso tenha interesse em aprofundar seus conhecimentos.
+
+## O Tal do Gráfico de Barras {.justify}
+
+Como mencionamos anteriormente, este é o gráfico de barras que utilizamos no primeiro post sobre as Olimpíadas. O objetivo é identificar os países com maior representatividade feminina nas Olimpíadas deste século.
+
+No entanto, se quiséssemos visualizar todos os países em um único gráfico, o número de barras seria tão grande que até um atleta de levantamento de peso teria dificuldade em lidar com elas, rs.
+
+Agora, vamos recorrer ao poder do mapa-múndi e às nossas aulas de geografia do ensino fundamental e médio!
+
+Sinta-se à vontade para visualizar o gráfico e o código explicado. Isso será útil tanto para quem deseja aprofundar seus conhecimentos em R quanto para iniciantes.
+
+
+```{r}
+#| fig-align: center
+#| echo: true
+#| warning: false
+#| message: false
+
+# Carrega os dados do arquivo CSV
+dados <- read.csv(file = 'DDS_OLI_PAI_GRF_BAR.csv', 
+                  header = TRUE,               # Indica que o arquivo CSV possui cabeçalhos
+                  na.strings = c('na', 'null'), # Define valores que serão interpretados como NA
+                  sep = ';',                   # Define o separador de colunas como ';'
+                  encoding = 'latin1',         # Define o encoding como Latin-1 para caracteres especiais
+                  dec = ',')                   # Define o separador decimal como ','
+
+# Cria um gráfico de barras usando o ggplot2
+p <- ggplot(dados, aes(x = reorder(paste0(reg, ' | ', NOC), ger_prop_f), 
+                       y = ger_prop_f)) +
+  
+  # Adiciona as barras ao gráfico com preenchimento colorido de acordo com um gradiente
+  geom_bar(stat = "identity", 
+           fill = scales::gradient_n_pal(c("deeppink", "pink", "lightpink"))(seq(0, 1, length.out = nrow(dados)))) +
+  
+  # Adiciona rótulos de texto sobre as barras, mostrando a porcentagem
+  geom_text(aes(label = paste0(round(ger_prop_f * 100, 1), '%')), 
+            vjust = 0.5, hjust = 1.25, size = 5, fontface = "bold", color = 'black') +
+  
+  # Inverte os eixos X e Y para uma melhor visualização horizontal
+  coord_flip() +
+  
+  # Aplica um tema minimalista ao gráfico
+  theme_minimal() +
+  
+  # Personaliza as propriedades visuais do gráfico
+  theme(
+    axis.title.x = element_blank(),             # Remove o título do eixo X
+    axis.title.y = element_blank(),             # Remove o título do eixo Y
+    axis.text.x = element_blank(),              # Remove o texto dos rótulos do eixo X
+    axis.ticks.x = element_blank(),             # Remove as marcas de tique no eixo X
+    axis.text.y = element_text(size = 14, face = "bold", color = 'white'),  # Altera o tamanho, estilo e cor do texto do eixo Y
+    panel.grid = element_blank(),               # Remove as linhas de grade do painel
+    plot.title = element_text(size = 0, face = "bold", hjust = 0.5),  # Ajusta as propriedades do título do gráfico (tamanho 0 significa sem título)
+    plot.background = element_rect(fill = scales::alpha("black", 1), color = NA),  # Define o fundo do gráfico como preto
+    panel.background = element_rect(fill = scales::alpha("black", 1), color = NA)  # Define o fundo do painel como preto
+  )
+  
+  p
+
+```
+
+
+
+## E agora, é o Mapa, já diria a Dora! {.justify}
+
+```{r}
+{
+#| fig-align: center
+#| echo: true
+#| warning: false
+#| message: false
+  
+# Carrega os dados de um arquivo CSV chamado 'DDS_OLI_PAI_GRF_MAP.csv'
+# Define que a primeira linha do arquivo contém os nomes das colunas
+# Valores como 'na' e 'null' serão tratados como valores ausentes (NA)
+# O separador de colunas no arquivo é ';', a codificação dos caracteres é 'latin1'
+# e os valores numéricos utilizam ',' como separador decimal
+visual = read.csv(file = 'DDS_OLI_PAI_GRF_MAP.csv', header = TRUE, na.strings = c('na', 'null'), sep = ';', encoding = 'latin1', dec = ',')
+
+# Carrega um mapa do mundo com uma resolução média e o retorna como um objeto de classe 'sf' (geometria espacial)
+world <- ne_countries(scale = "medium", returnclass = "sf")
+
+# Faz a junção dos dados carregados do CSV com o mapa do mundo
+# A junção é feita utilizando a coluna 'admin' do mapa e a coluna 'reg' dos dados
+# O parâmetro 'all = TRUE' mantém todas as regiões do mapa, mesmo se não houver correspondência nos dados
+dados <- merge(world, visual, all = TRUE, by.x = "admin", by.y = "reg")
+
+# Remove as linhas do conjunto de dados que possuem valores ausentes (NA) na coluna 'ger_prop_f'
+dados <- dados[!is.na(dados$ger_prop_f), ]
+
+# Verifica o tipo de geometria das regiões no conjunto de dados
+st_geometry_type(dados)
+
+# Filtra os dados para manter apenas regiões com geometria do tipo 'POLYGON' ou 'MULTIPOLYGON'
+dados <- dados[st_geometry_type(dados) %in% c("POLYGON", "MULTIPOLYGON"), ]
+
+# Converte qualquer geometria complexa em polígonos simples, se necessário
+dados <- st_cast(dados, "POLYGON")
+
+# Define uma paleta de cores para o mapa, com diferentes tons
+paleta = c('white', "gray75", "pink", "deeppink")
+
+# Cria um mapa interativo usando o pacote leaflet, com os dados processados
+mapa = leaflet(dados) %>%
+  addProviderTiles(providers$CartoDB.DarkMatter) %>%  # Adiciona um tema de fundo escuro ao mapa
+  addPolygons(
+    fillColor = ~colorNumeric(palette = paleta, domain = dados$ger_prop_f)(ger_prop_f),  # Preenche as regiões com cores baseadas nos valores de 'ger_prop_f'
+    fillOpacity = 0.7,  # Define a transparência do preenchimento das regiões
+    color = "white",    # Define a cor das bordas das regiões
+    weight = 1,         # Define a espessura das bordas
+    opacity = 1,        # Define a opacidade das bordas
+    highlight = highlightOptions(
+      weight = 3,        # Aumenta a espessura das bordas ao passar o mouse
+      color = "black",   # Muda a cor das bordas para preto ao passar o mouse
+      fillOpacity = 0.7, # Mantém a transparência ao passar o mouse
+      bringToFront = TRUE # Traz a região para frente ao passar o mouse
+    ),
+    label = ~paste0(admin, ": ", round(ger_prop_f * 100, 2), "%"),  # Cria rótulos com o nome da região e o valor de 'ger_prop_f' arredondado
+    labelOptions = labelOptions(
+      style = list("font-weight" = "bold", "color" = "black"),  # Define o texto dos rótulos como negrito e de cor preta
+      textsize = "15px",   # Define o tamanho do texto dos rótulos
+      direction = "auto",  # Direção automática para posicionar os rótulos
+      opacity = 0.9,       # Define a opacidade dos rótulos
+      offset = c(0, 0)     # Define o deslocamento dos rótulos
+    )
+  ) %>%
+  addLegend(
+    pal = colorNumeric(palette = paleta, domain = dados$ger_prop_f),  # Adiciona uma legenda ao mapa usando a mesma paleta de cores
+    values = ~ger_prop_f,  # Define os valores que serão exibidos na legenda
+    opacity = 0.7,         # Define a transparência da legenda
+    title = "Proporção Feminina",  # Define o título da legenda
+    position = "bottomright",  # Posiciona a legenda no canto inferior direito
+    labFormat = labelFormat(suffix = "%")  # Formata os rótulos da legenda com o sufixo '%'
+  ) %>%
+  addMiniMap(tiles = providers$CartoDB.Positron, toggleDisplay = TRUE) %>%  # Adiciona um mini mapa no canto inferior direito
+  addLayersControl(
+    baseGroups = c("Dark Matter"),  # Adiciona a opção de controle de camadas
+    options = layersControlOptions(collapsed = FALSE)  # Configura o controle de camadas para que ele não seja colapsável
+  ) %>%
+  setView(lng = 0, lat = 20, zoom = 2)  # Centraliza o mapa na longitude 0 e latitude 20, com zoom inicial de 2
+
+
+mapa  
+}
+
+```
+
+
+
+
+Como podemos observar, o mapa possui um grande poder visual!
+
+Analisando o mapa, vemos que os países em preto são aqueles que não atenderam ao critério de ter, no mínimo, 20 atletas femininas neste século. Observamos que o continente africano é o mais ausente nesse aspecto. Por outro lado, em cerca de metade dos países africanos que aparecem no mapa, há uma boa representatividade feminina, com destaque para Angola, Zimbábue e Etiópia.
+
+Na Europa, algo que me surpreende (talvez devido a um viés pessoal) é que a grande maioria dos países apresenta uma representatividade feminina inferior a 45%, considerando que a faixa de igualdade estaria entre 45% e 55%.
+
+Mais à direita, em direção à Ásia, é fácil perceber um país que chama muita atenção: a China, que tem uma boa representatividade feminina, com sua cor se destacando na vasta área demográfica que ocupa.
+
+Porém, ali perto, de forma mais discreta, temos um destaque ainda maior: a Coreia do Norte, com cerca de 72% de representatividade feminina. De maneira geral, os países asiáticos próximos a essa região permanecem dentro da faixa de igualdade que estabeleci.
+
+Do outro lado do mapa, podemos retornar ao nosso Brasil, que possui 48% de mulheres, quase atingindo os 50% "ideais".
+
+Ressalto que a proporção de representação não foi normalizada pelas respectivas proporções de mulheres em cada país. Isso seria uma medida mais justa para comparar e interpretar o visual.
+
+# Referências {.justify}
+
+- [Base de Dados | Olympic Data](https://www.kaggle.com/datasets/bhanupratapbiswas/olympic-data)
+
+
+
+
+
+
+
+
+
+
