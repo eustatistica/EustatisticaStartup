@@ -46,7 +46,7 @@ Quando lidamos com variáveis envolvendo localizações, especialmente regiões,
 
  
  
-![](grafico_linhas2.mp4){fig-align="center" width="400"}
+![](grafico_linhas2.gif){fig-align="center" width="400"}
  
  
  
