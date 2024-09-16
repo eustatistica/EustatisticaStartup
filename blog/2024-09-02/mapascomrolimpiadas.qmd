@@ -24,34 +24,24 @@ format:
 
 
 
-::: columns
-::: {.column width="40%"}
 
 Anteriormente, trouxemos em um post uma [Análise das Olimpíadas](https://eustatistica.github.io/EustatisticaStartup/blog/2024-07-31/olimpiadas%20Copia.html) neste século e apresentamos dois gráficos interessantes sobre os países e sua representatividade feminina.
 
-Representatividade essa que alcançou o marco histórico de 50% de mulheres nos jogos olímpicos de 2024. Conforme podemos ver no visual temporal ao lado.
+Representatividade essa que alcançou o marco histórico de 50% de mulheres nos jogos olímpicos de 2024. Conforme podemos ver no visual temporal abaixo.
+
+![](grafico_linhas2.gif){fig-align="center" width="400"}
 
 Um dos gráficos usados no post mencionado, foi o de barras, que embora útil, possui limitações quando se trata de muitas categorias, o que pode dificultar a visualização clara dos dados. Para superar essa limitação, exploraremos outras formas de representação visual mais adequadas.
 
 Quando lidamos com variáveis envolvendo localizações, especialmente regiões, podemos utilizar mapas como um recurso visual poderoso. Os mapas nos permitem visualizar padrões geográficos e destacar áreas de interesse de maneira intuitiva e impactante.
 
-:::
-
-
-::: {.column width="7%"}
-
-:::
-
-::: {.column width="53%"}
 
  
  
-![](grafico_linhas2.gif){fig-align="center" width="400"}
+
  
  
  
-:::
-:::
 
 
 

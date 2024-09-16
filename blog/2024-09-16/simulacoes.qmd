@@ -27,29 +27,10 @@ format:
 ### Minha infância foi uma simulação? {.justify}
 
 
-::: columns
-::: {.column width="55%"}
+![](img1.png){fig-align="center" width="600"}
+
 
 Não se assuste, eu não vivi em uma simulação, pelo menos é o que eu acho, rs. No entanto, minha relação com as simulações na infância foi bem íntima. Sempre fui fascinado por futebol. Era uma briga em casa para assistir aos jogos do São Paulo no domingo, às 16h, enquanto minha mãe queria ver os programas simultâneos da Record ou do SBT. Ou, então, meu jogo coincidia com o do Flamengo, time do meu pai. Sem contar que, para a Globo ou a Band transmitirem os jogos do São Paulo, também era uma luta, já que havia 4 times do RJ e 4 de SP para apenas dois locais de transmissão.
-
-:::
-
-
-::: {.column width="5%"}
-
-:::
-
-::: {.column width="40%"}
-
- 
- 
-![](img1.png){fig-align="center" width="600"}
- 
- 
- 
-:::
-:::
-
 
 Enfim, o futebol sempre me encantou. A complexidade do jogo, as inúmeras possibilidades e a imprevisibilidade eram fatores que me fascinavam. Aliás, eu me perguntava: qual seria o resultado do jogo antes de acontecer? Seria um 3 a 0, com gols de Kaká, Rogério Ceni e Luis Fabiano, ou um infeliz 0 a 0? É comum fazermos palpites sobre o placar antes da partida, mas com base em quê? Na maioria das vezes, em nossa opinião clubista, otimista e nada precisa, rs! Mas e se pudéssemos fundamentar melhor esses palpites? Perceba que, ao sugerir um 3x0, fiz uma breve simulação baseada em nada além da minha imaginação. Mas, e se eu pudesse me basear em algo mais concreto? Os fatos e dados estão aí para nos ajudar!
 
@@ -67,31 +48,22 @@ Enfim, o futebol sempre me encantou. A complexidade do jogo, as inúmeras possib
 ### A simulação! {.justify}
 
 
-::: columns
-::: {.column width="55%"}
+
 
 Mas, antes de entrarmos mais a fundo nesse assunto, onde estão as simulações na minha infância? Onde está a "Matrix" que citei no início? Quando crianças, sempre temos algumas brincadeiras que nos ajudam a passar o tempo e aproveitar a infância. Uma que me recordo bastante é quando, raramente, tinha a oportunidade de jogar um PlayStation 2 em uma Lan House, na casa do meu primo ou do meu amigo. E o que eu jogava? Futebol. Não gostava de outros jogos; futebol era meu hiperfoco.
 
 
-:::
-
-
-::: {.column width="5%"}
-
-:::
-
-::: {.column width="40%"}
 
  
  
-![](img2.png){fig-align="center" width="600"}
+
  
- 
- 
-:::
-:::
+
 
 Porém, nem sempre tinha essa oportunidade. Assim, idealizei uma forma de sempre poder jogar e simular minhas partidas de futebol. Primeiro, peguei alguns álbuns das Copas do Mundo para ver as bandeiras das seleções e, então, desenhei e colori grande parte delas. Depois, as recortei, criando pequenas "cartinhas" de cerca de 2 cm de altura e 4 cm de largura.
+
+
+![](img2.png){fig-align="center" width="600"}
 
 Pois bem, já tendo as seleções, agora eu precisava de uma maneira de definir os placares dos confrontos entre elas e realizar minha primeira Copa do Mundo pessoal, dentro de casa. E aí vem a solução. Um dos meus brinquedos favoritos na infância eram cartas; eu colecionava de vários tipos: Yu-Gi-Oh!, Pokémon, Naruto, etc. Entre elas, havia algumas que não tinham tanta "vida" quanto essas, como as de UNO e baralho. Porém, mal sabia eu que elas poderiam dar vida aos resultados dos meus torneios.
 
@@ -154,36 +126,24 @@ cat('Simulação de 3 Partidas: ', rbinom(n = 3, size = 1, prob = mean(partidas)
 ## Uma Aplicação das Simulações! {.justify}
 
 
-::: columns
-::: {.column width="55%"}
+
 
 
 Recentemente, li um capítulo de um ótimo livro para quem se interessa por aplicação de dados e estatística no futebol: Soccermatics, de David Sumpter. Ele utiliza dados históricos de anos anteriores da Premier League para simular vários cenários da tabela final da competição, usando a distribuição de Poisson. Achei muito interessante!
 
 Quando temos dados, podemos revitalizar aquela brincadeira de sortear as cartas do UNO e, em vez de nos basearmos na intuição, usamos os dados para nos embasarmos em fatos. E se quiséssemos, por exemplo, simular uma partida da Copa do Brasil entre Flamengo e Bahia, como poderíamos fazer isso usando dados?
 
-:::
-
-
-::: {.column width="5%"}
-
-:::
-
-::: {.column width="40%"}
 
  
- 
-![](img4.png){fig-align="center" width="600"}
- 
- 
- 
-:::
-:::
 
+ 
 
 
 
 Primeiro, poderíamos escolher qual característica do jogo simularíamos, como o placar. Para ser mais realista, poderíamos usar a média de gols dos times para a simulação, verificando qual distribuição probabilística nos ajudaria, seja a de Poisson ou a Binomial Negativa, por exemplo.
+
+ 
+![](img4.png){fig-align="center" width="600"}
 
 Além disso, poderíamos simular o placar com base em outras características do jogo, criando um "multiverso" de possibilidades. Poderíamos utilizar a média de chutes ou a média de desarmes para simular o placar e, consequentemente, o vencedor da partida.
 
@@ -199,8 +159,8 @@ Com isso, criei uma aplicação em R que simula automaticamente a Copa do Brasil
 
 # Utilidade da Simulação com Dados no Cotidiano e para Empreendedores {.justify}
 
-::: columns
-::: {.column width="55%"}
+ 
+![](img3.png){fig-align="center" width="600"}
 
 - Melhor gestão de recursos: Otimiza a alocação de insumos, estoque e funcionários com base em cenários simulados.
 
@@ -210,23 +170,12 @@ Com isso, criei uma aplicação em R que simula automaticamente a Copa do Brasil
 
 - Ajuste operacional: Facilita a previsão e o ajuste no atendimento ao cliente, otimizando o tempo e aumentando a satisfação.
 
-:::
 
-
-::: {.column width="5%"}
-
-:::
-
-::: {.column width="40%"}
+ 
 
  
  
-![](img3.png){fig-align="center" width="600"}
  
- 
- 
-:::
-:::
 
 
 - Testes de hipóteses e validação de modelos: Simule o tempo de espera em um hospital usando a distribuição de Poisson para avaliar o impacto de aumentos no número de pacientes.
