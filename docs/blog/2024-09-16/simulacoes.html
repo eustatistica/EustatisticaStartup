@@ -315,7 +315,7 @@ gtag('config', 'G-1Y9PT8DKMS', { 'anonymize_ip': true});
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">'Simulação de 3 Partidas: '</span>, <span class="fu">rbinom</span>(<span class="at">n =</span> <span class="dv">3</span>, <span class="at">size =</span> <span class="dv">1</span>, <span class="at">prob =</span> <span class="fu">mean</span>(partidas)))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>Simulação de 3 Partidas:  0 1 0</code></pre>
+<pre><code>Simulação de 3 Partidas:  1 1 0</code></pre>
 </div>
 </div>
 </section>
@@ -337,7 +337,7 @@ gtag('config', 'G-1Y9PT8DKMS', { 'anonymize_ip': true});
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">'Flamengo '</span>,<span class="fu">rpois</span>(<span class="dv">1</span>,<span class="fl">1.75</span>),<span class="st">'x'</span>,<span class="fu">rpois</span>(<span class="dv">1</span>,<span class="fl">1.65</span>),<span class="st">' Bahia'</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>Flamengo  2 x 1  Bahia</code></pre>
+<pre><code>Flamengo  1 x 1  Bahia</code></pre>
 </div>
 </div>
 <p>Com isso, criei uma aplicação em R que simula automaticamente a Copa do Brasil, usando como métrica base os gols esperados para atribuição dos placares. A seguir, confira o torneio simulado!</p>

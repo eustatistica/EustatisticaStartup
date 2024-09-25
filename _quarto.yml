@@ -9,6 +9,8 @@ website:
     left:
       - href: apage1.qmd
         text: Início
+      - href: page5.qmd
+        text: EAFC IA Experience
       - href: page2.qmd
         text: Aplicações e Trabalhos
       - href: blog.qmd

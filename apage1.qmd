@@ -10,7 +10,7 @@ about:
       href: https://github.com
     - text: instagram
       icon: instagram
-      href: https://www.instagram.com/eustatistica/     
+      href: https://www.instagram.com/eustatistica/ 
     - text: email
       icon: envelope
       href: mailto:eustatistica@gmail.com
