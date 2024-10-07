@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br" xml:lang="pt-br"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Pedro Garcia">
+<meta name="dcterms.date" content="2024-07-10">
+
+<title>Elimine Vieses e Decida Melhor com Dados!</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-1Y9PT8DKMS"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-1Y9PT8DKMS', { 'anonymize_ip': true});
+</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../apage1.html">
+ <span class="menu-text">Início</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../page5.html">
+ <span class="menu-text">EAFC IA Experience</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../page2.html">
+ <span class="menu-text">Aplicações e Trabalhos</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html">
+ <span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../conte.html">
+ <span class="menu-text">Conte-me mais!</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../page3.html">
+ <span class="menu-text">Sobre</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../page4.html">
+ <span class="menu-text">Contato</span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Elimine Vieses e Decida Melhor com Dados!</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">Tomar melhores decisões</div>
+                <div class="quarto-category">média</div>
+                <div class="quarto-category">modelagem</div>
+                <div class="quarto-category">coeficiente de variação</div>
+                <div class="quarto-category">Cartola FC</div>
+                <div class="quarto-category">futebol</div>
+                <div class="quarto-category">estatística</div>
+                <div class="quarto-category">indicadores</div>
+                <div class="quarto-category">KPIs</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">autor</div>
+      <div class="quarto-title-meta-contents">
+               <p>Pedro Garcia </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Data de Publicação</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">07/10/2024</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">nesta página</h2>
+   
+  <ul>
+  <li><a href="#um-resumo-do-post" id="toc-um-resumo-do-post" class="nav-link active" data-scroll-target="#um-resumo-do-post">Um resumo do post!</a></li>
+  <li><a href="#tomar-decisões-com-dados" id="toc-tomar-decisões-com-dados" class="nav-link" data-scroll-target="#tomar-decisões-com-dados">Tomar Decisões com Dados!</a>
+  <ul class="collapse">
+  <li><a href="#a-importância-de-tomar-decisões-usando-fatos" id="toc-a-importância-de-tomar-decisões-usando-fatos" class="nav-link" data-scroll-target="#a-importância-de-tomar-decisões-usando-fatos">A Importância de Tomar Decisões usando Fatos!</a></li>
+  <li><a href="#dicas-para-tomar-melhores-decisões" id="toc-dicas-para-tomar-melhores-decisões" class="nav-link" data-scroll-target="#dicas-para-tomar-melhores-decisões">Dicas para tomar melhores decisões!</a></li>
+  </ul></li>
+  <li><a href="#um-exemplo-prático-no-cartola-fc" id="toc-um-exemplo-prático-no-cartola-fc" class="nav-link" data-scroll-target="#um-exemplo-prático-no-cartola-fc">Um Exemplo Prático no Cartola FC!</a>
+  <ul class="collapse">
+  <li><a href="#como-eu-tomava-decisões-no-cartola-sem-nenhuma-ferramenta" id="toc-como-eu-tomava-decisões-no-cartola-sem-nenhuma-ferramenta" class="nav-link" data-scroll-target="#como-eu-tomava-decisões-no-cartola-sem-nenhuma-ferramenta">Como Eu Tomava Decisões no Cartola Sem Nenhuma Ferramenta?</a></li>
+  <li><a href="#como-eu-escalo-atualmente" id="toc-como-eu-escalo-atualmente" class="nav-link" data-scroll-target="#como-eu-escalo-atualmente">Como Eu Escalo Atualmente?</a>
+  <ul class="collapse">
+  <li><a href="#médias-várias-delas" id="toc-médias-várias-delas" class="nav-link" data-scroll-target="#médias-várias-delas">Médias, Várias Delas!</a></li>
+  <li><a href="#um-dos-problemas-da-média" id="toc-um-dos-problemas-da-média" class="nav-link" data-scroll-target="#um-dos-problemas-da-média">Um dos Problemas da Média</a></li>
+  <li><a href="#reduzindo-as-possibilidades-de-escolha" id="toc-reduzindo-as-possibilidades-de-escolha" class="nav-link" data-scroll-target="#reduzindo-as-possibilidades-de-escolha">Reduzindo as Possibilidades de Escolha</a></li>
+  <li><a href="#a-mina-de-ouro-o-poder-da-ia-que-nada-mais-é-que-estatística" id="toc-a-mina-de-ouro-o-poder-da-ia-que-nada-mais-é-que-estatística" class="nav-link" data-scroll-target="#a-mina-de-ouro-o-poder-da-ia-que-nada-mais-é-que-estatística">A mina de ouro, o poder da IA, que nada mais é que Estatística…</a></li>
+  <li><a href="#investigando-jogadores" id="toc-investigando-jogadores" class="nav-link" data-scroll-target="#investigando-jogadores">Investigando Jogadores!</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#conclusão" id="toc-conclusão" class="nav-link" data-scroll-target="#conclusão">Conclusão</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<section id="um-resumo-do-post" class="level1 justify">
+<h1 class="justify">Um resumo do post!</h1>
+<p>Neste post, você vai aprender boas práticas para tomar melhores decisões, usando algumas ferramentas, dicas e dados, que podem agregar em todas as áreas da sua vida. E se seu interesse é Cartola FC e futebol, pode se guiar pelos tópicos que têm muito assunto legal!</p>
+</section>
+<section id="tomar-decisões-com-dados" class="level1 justify">
+<h1 class="justify">Tomar Decisões com Dados!</h1>
+<section id="a-importância-de-tomar-decisões-usando-fatos" class="level2 justify">
+<h2 class="justify anchored" data-anchor-id="a-importância-de-tomar-decisões-usando-fatos">A Importância de Tomar Decisões usando Fatos!</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="IM1.png" class="img-fluid figure-img" width="400"></p>
+</figure>
+</div>
+<p>Por que usar fatos e dados para tomar decisões, se podemos apenas invocar nossa boa e velha intuição para isso? Pois então, na grande maioria das vezes, nossa intuição nos prega peças, não sendo tão efetiva e precisa. Nossas decisões são baseadas em experiências e memórias passadas que podem ser incompletas e imprecisas. Além disso, são influenciadas por nossos preconceitos e julgamentos. Alguns exemplos do dia-a-dia:</p>
+<ul>
+<li>Decidir não contratar alguém porque “não gostei da primeira impressão”, mesmo que o candidato tenha todas as qualificações necessárias.</li>
+<li>Evitar um determinado time no Cartola FC apenas porque começou mal o campeonato, ignorando estatísticas atualizadas.</li>
+<li>Uma pessoa pode continuar comprando a mesma marca de cereal por hábito, sem considerar novas opções ou melhorias no mercado.</li>
+</ul>
+<p>Logo, usar informações para pautar suas decisões, na sua vida pessoal, no seu negócio, na sua profissão, nas suas atividades de lazer como o Cartola ou jogando um EAFC (FIFA), se torna fundamental!</p>
+</section>
+<section id="dicas-para-tomar-melhores-decisões" class="level2 justify">
+<h2 class="justify anchored" data-anchor-id="dicas-para-tomar-melhores-decisões">Dicas para tomar melhores decisões!</h2>
+<ul>
+<li>Use fatos e dados, e não apenas a intuição!</li>
+</ul>
+<p>Se há dados, podemos usar para tomar decisões. E se não há, vamos em busca deles!</p>
+<ul>
+<li>Diminua as escolhas, se guie por poucas, mas efetivas soluções</li>
+</ul>
+<p>E aquela sensação de ter que escolher entre inúmeros jogadores no seu Cartola, múltiplos filmes na plataforma de streaming, a indecisão pode imperar e você desistir antes de agir. Assim, uma boa tática é se limitar apenas às escolhas essenciais, como, por exemplo, qual time pode me proporcionar as melhores opções de jogadores para escalar, ou qual tipo de filme/série com qual temática quero assistir?</p>
+<ul>
+<li>Decisões mais importantes no início e não no final do dia</li>
+</ul>
+<p>Repare que, ao longo do nosso dia, tendemos a tomar as melhores decisões no início, uma vez que estamos mais descansados do que ao final, após inúmeros eventos acontecerem. Tome como exemplo quando você começa o dia cumprindo fielmente bons hábitos de alimentação ou de saúde, mas que, ao final do dia, se permite comer algum alimento hipercalórico, procrastinar uma atividade, adiar uma atividade física etc.</p>
+<ul>
+<li>Volte a primeira dica e complemente os fatos observados com sua intuição</li>
+</ul>
+<p>Só fatos ajudam? Sim, e muito, mas é sempre relevante unir o fato com um contexto e experiência no tema. Um exemplo bem legal é que, segundo <a href="https://revistagalileu.globo.com/blogs/buzz/noticia/2014/05/site-traz-graficos-que-mostram-correlacoes-absurdas.html">pesquisa</a>, toda vez que o ator Nicolas Cage aparece em um filme, as pessoas se afogam na piscina. É preciso ter o mínimo de entendimento da realidade para perceber que uma coisa não tem nada a ver com a outra. Assim, é importante questionar os fatos, ter o mínimo de entendimento do assunto abordado.</p>
+</section>
+</section>
+<section id="um-exemplo-prático-no-cartola-fc" class="level1 justify">
+<h1 class="justify">Um Exemplo Prático no Cartola FC!</h1>
+<section id="como-eu-tomava-decisões-no-cartola-sem-nenhuma-ferramenta" class="level2 justify">
+<h2 class="justify anchored" data-anchor-id="como-eu-tomava-decisões-no-cartola-sem-nenhuma-ferramenta">Como Eu Tomava Decisões no Cartola Sem Nenhuma Ferramenta?</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="IM2.png" class="img-fluid figure-img" width="400"></p>
+</figure>
+</div>
+<p>Jogo Cartola há muito tempo, e foi rotineiro antes de cada rodada eu fazer as seguintes ações: abrir o aplicativo, ir da posição de ataque até a comissão técnica, ordenar os jogadores pela maior média e assim começar a escolher como prioridade do maior pontuador médio para o menor, de olho nos times que eu achava favoritos, fazendo um balanceamento com o valor dos jogadores, é claro.</p>
+<p>Mesmo seguindo essa rotina, eu sempre procurava 2-3 jogadores fora do radar geral da galera para tentar de alguma forma surpreender, seja vasculhando por algum histórico recente de atuação, seja apenas por intuição mesmo. Algo que sempre fiz foi priorizar os jogadores que atuavam em casa, mas às vezes optando por algumas surpresas fora de casa.</p>
+<p>Essa maneira de escalar me retornava uma boa pontuação média ao longo das rodadas: algumas rodadas mitando, outras fazendo pouco mais que a média, e algumas raras pontuando muito pouco.</p>
+<p>Porém, ainda há muitos vieses nesse processo decisório. Ao ordenar os jogadores do maior para o menor pontuador médio, por exemplo, frequentemente poderia surgir algum nome que eu teria predisposição a escalar, seja por subconscientemente gostar do jogador, ter uma memória de ter mitado com ele em rodadas passadas, ou até mesmo por ver o nome dele circular muito nas redes sociais.</p>
+<p>Repare que por isso, às vezes, podemos escalar sob um viés chamado de ancoragem, onde refletimos nossa escolha com base em uma experiência passada que não é baseada em puro fato de performance, mas sim por outros tipos de situações.</p>
+<p>Além desse viés, ainda há muitos outros que podem nos perseguir. Logo, quanto mais ferramentas objetivas tivermos à nossa disposição para tomar decisões, menos estaremos expostos aos nossos vieses e julgamentos.</p>
+</section>
+<section id="como-eu-escalo-atualmente" class="level2 justify">
+<h2 class="justify anchored" data-anchor-id="como-eu-escalo-atualmente">Como Eu Escalo Atualmente?</h2>
+<section id="médias-várias-delas" class="level3 justify">
+<h3 class="justify anchored" data-anchor-id="médias-várias-delas">Médias, Várias Delas!</h3>
+<p>Os dados a seguir estão atualizados até o dia 27/09/2024, com informações dos jogadores não só do Brasileirão, mas também dos outros campeonatos disputados. No processo de escolhas, não vou me ater neste momento a fatores como times que estão disputando mata-mata e podem poupar.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="IMG1.png" class="img-fluid figure-img" width="800"></p>
+</figure>
+</div>
+<p>Antes de invocar qualquer técnica estatística avançada, a média já nos serve muito! Mas ela deve ser vista de diferentes perspectivas para nos dar o máximo de informação possível, não apenas de uma maneira geral. No entanto, inicialmente, gosto de começar por ela.</p>
+<p>Podemos perceber que o campeão histórico de pontos até o momento seria o Pedro, com certeza seria figurinha carimbada na nossa escalação da rodada! No entanto, para confirmarmos esse jogador, poderíamos especificar ainda mais nossa análise, verificando, por exemplo, se o atleta está jogando como mandante ou visitante e comparar com a média histórica. Além disso, a média histórica é muito interessante para vermos o quão o atleta a longo prazo foi efetivo, porém, é interessante também combinar a análise com um histórico mais recente, comparando a performance do atleta nos últimos 3, 5 e 10 jogos, por exemplo, identificando possíveis quedas de rendimento dos jogadores e jogadores que nos últimos jogos vêm se destacando mais.</p>
+<p>Nesse sentido, quando alinhamos a média do Pedro nos últimos 10 jogos em casa, ele permanece no topo. Porém, quando vamos confirmar esse desempenho nos últimos 5 e 3 jogos, independentemente do local, ele não aparece, evidenciando outras boas opções de jogadores que aparecem como destaques recentes, como o Bolasie, Estevão e Luiz Araújo.</p>
+<p>Arias se mostra uma excelente opção, porém há um detalhe sobre ele que uma média vista de outro modo nos mostra. No desempenho médio nos últimos 10 jogos em casa, ele não aparece no topo das melhores opções. Porém, aparece como a segunda melhor opção quando joga fora de casa. Essa é uma das vantagens de visualizar a média de diversas formas. Outro jogador interessante é o Reinaldo, que nem sequer aparece na média histórica, porém é figurinha carimbada em todos os outros rankings de média: em casa, fora, nos últimos 3, 5 e 10 jogos, mostrando uma ascensão!</p>
+</section>
+<section id="um-dos-problemas-da-média" class="level3">
+<h3 class="anchored" data-anchor-id="um-dos-problemas-da-média">Um dos Problemas da Média</h3>
+<p>Beleza, você me diz que a média já é uma grande ferramenta para tomar decisão? Mas agora já aponta problemas, no plural? Há algumas coisas que apenas a média não é capaz de informar, mesmo que de fato ela salve vidas. Imagine se você tivesse 10 valores da pontuação de um jogador e não pudesse realizar a média para decidir se escala ou não determinado atleta. Seria caótico. Agora, imagine que você tem 10 valores de pontuação para todos os jogadores do Brasileirão… E assim, há tanta informação que você prefere fechar o aplicativo do Cartola e ir comer alguma coisa hipercalórica para compensar esse estresse, e olha que eu falei em apenas 10 valores.</p>
+<p>Mas então, qual seria o problema da média? Um primeiro problema é a possibilidade de que um jogador, em 3 partidas, tenha pontuado 1, -1 e 18 pontos. Repare que a média dele é de 6 pontos por jogo. Há um problema nisso, pois existe uma discrepância; ainda há uma irregularidade no desempenho. É diferente de um mesmo jogador que pontuou 5, 6 e 7 pontos e tem média de 6. Em quem você confiaria mais para garantir pontos? Repare que ilustrei um cenário de apenas 3 jogos, mas esse fenômeno também é difícil de identificar quando temos muitos dados de um mesmo jogador.</p>
+<p>Agora que vem a parte legal: há uma medida muito interessante chamada coeficiente de variação. Ela nada mais é que o desvio padrão dividido pela média. Quanto maior for o valor, mais irregular o jogador é ao longo de um período de tempo. E, por consequência, quanto menor, mais regular ele é. Isto é, é uma medida que nos diz o quão consistente e confiável aquela média de pontos do jogador é. Um outro ponto positivo dessa medida é que podemos multiplicá-la por 100 e interpretá-la como um valor percentual, tornando-a ainda mais intuitiva! Agora, chegou meu momento! (primeira vez que faço isso no site). Já há um post no site que fala bastante sobre o coeficiente de variação, acesse lá! <a href="https://eustatistica.github.io/EustatisticaStartup/blog/2024-05-03/cv.html">Link</a>. Além desse, há também outro em que exemplifico na prática um momento de alta regularidade de um time de futebol. <a href="https://eustatistica.github.io/EustatisticaStartup/blog/2024-07-17/regularidade_time_zubeldia.html">Link</a>. Agora, vamos para os visuais!</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="IMG2.png" class="img-fluid figure-img" width="800"></p>
+</figure>
+</div>
+<p>Suponha que chegamos a uma rodada onde temos um número limitado de cartoletas e você analisou que gostaria de contar muito com o Hulk ou Arrascaeta, com médias históricas de 9.5 e 9.3 pontos, respectivamente. Repare que são bem semelhantes. Algo que poderíamos invocar agora é nossa intuição, já que sabemos que são semelhantes: qual eu acho que poderia ir bem? Repare que, por enquanto, eu não quis invocar o uso das médias móveis (últimos 10 jogos) como um possível desempate, para salientar que, em determinados momentos, podemos usar o fato de que os dados evidenciam nossa própria opinião.</p>
+<p>Mas agora iremos requisitar a medida discutida, o famoso coeficiente de variação (CV). No gráfico intitulado “Regularidade Histórica”, os jogadores estão ordenados do mais regular ao mais irregular, uma vez que já comentei que quanto menor o valor, mais regular o atleta é ao longo do período analisado. Nesse visual, realizei um filtro dos 50 jogadores que possuem maior média histórica e, a partir daí, gerei o ranking. Entre os mais regulares estão João Neto e De La Cruz, com um CV menor que 40%. Porém, ambos têm uma pontuação histórica que não excede 7.3 pontos. É importante salientar que eles são muito regulares, mas nessa faixa específica de pontuação, é esperado que, ao longo de seus jogos, eles sejam muito consistentes nesse nível de pontuação. Repare que um CV baixo não significa que o jogador desempenha muito bem no Cartola, uma vez que a regularidade dele pode ser boa, mas a pontuação pode ser baixa, resultando em uma frequência regular na medíocridade. Confira uma ilustração no gráfico abaixo.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="IMGE1.png" class="img-fluid figure-img" width="800"></p>
+</figure>
+</div>
+<p>Voltando para nosso exemplo: quando confrontamos o Hulk e o Arrascaeta na regularidade, há uma grande diferença. O Arrascaeta é o terceiro jogador mais regular, sendo cerca de 30% mais consistente que o Hulk. Na prática, para jogadores que são mais irregulares, há muitos fatores que os tornam assim, como condições específicas para que pontuem naquela média, momentos bons da equipe, fase boa do próprio jogador, situações favoráveis dentro de jogo, fatores psicológicos, etc. São inúmeros os fatores possíveis para que um jogador seja irregular ao longo do tempo. Por outro lado, jogadores mais consistentes tendem a se adaptar a qualquer tipo de situação e a manter aquela média específica.</p>
+<p>Assim sendo, sem o uso de qualquer outra informação, a escolha do Arrascaeta seria a mais adequada, a menos que você tenha uma outra evidência mais forte que possa estar a favor do Hulk. De outro modo, quando olhamos ambos os jogadores pela visão dos últimos 10 jogos, vemos que o desempenho médio deles ainda não difere. Porém, o Arrascaeta, que no período histórico era bem regular, passa nesse período por oscilações, uma vez que ambos os jogadores nem aparecem no topo do visual de regularidade, onde o Arrascaeta apresenta um CV de 85%. Assim, quais jogadores nos dariam tanto uma boa média quanto regularidade ao mesmo tempo? Cuiabano e Pedro seriam nossas respostas, uma vez que apenas os dois jogadores figuram no top 10 de ambos os critérios.</p>
+<p>Um detalhe interessante é o Thiago Silva, que, após sua volta ao Fluminense, foi retratado na mídia como tendo uma grande virada de chave no time. A regularidade dele nos últimos 10 jogos evidencia isso, sendo de 48%. E, mesmo que ele não apareça no top dos jogadores que mais pontuam, com 5.9 pontos de média, ainda sim é um grande marco, uma vez que ele atua como zagueiro.</p>
+</section>
+<section id="reduzindo-as-possibilidades-de-escolha" class="level3">
+<h3 class="anchored" data-anchor-id="reduzindo-as-possibilidades-de-escolha">Reduzindo as Possibilidades de Escolha</h3>
+<p>Este poderia ser um dos primeiros tópicos deste post, antes da média dos jogadores. Mas não seria tão legal e cativante começar por ele. Uma maneira de direcionar nossas análises para quais jogadores escalar vai em direção a algo ainda maior do que os atletas individualmente: o conjunto deles, o time! Muitas vezes, sem qualquer tipo de análise elaborada, me vi começando a montar minha escalação a partir dos times mais favoritos da rodada, pegando de dois a três jogadores de cada um deles. Porém, às vezes nossa concepção de favoritismo é suja pelos nossos vieses. Um exemplo simples é o fator clubismo, onde podemos subestimar a performance do nosso próprio time.</p>
+<p>Uma maneira de especificarmos nosso olhar para os times é fazer como na análise dos jogadores: olhar para a média histórica, nos últimos jogos, como mandante, como visitante e, por fim, nossa métrica de regularidade! Veja o visual a seguir.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="IMG3.png" class="img-fluid figure-img" width="800"></p>
+</figure>
+</div>
+<p>No visual de média histórica 2024, temos a média da pontuação do time de maneira coletiva. Nos demais visuais, temos a média por jogador da equipe. Assim, já podemos minimizar algumas escolhas especificando nossa análise. Olhando para os últimos cinco e três jogos, Palmeiras e Fluminense são boas opções para explorar. O São Paulo também seria um bom destaque; mesmo que tenha liderado nos últimos jogos e caído de rendimento, ele aparece entre os principais times em todas as médias móveis.</p>
+<p>Por outra ótica, o Grêmio fora de casa é uma opção que pode ser bem vista, tendo uma boa média nos últimos dez jogos. Fluminense e São Paulo, que já foram citados, também são destaques nesse quesito. Por outro lado, jogando em casa, além do São Paulo, Atlético-MG e Flamengo também seriam bons destaques. Dito isso, podemos mergulhar nos jogadores dessas equipes, formando boas possibilidades de escalações!</p>
+<p>No entanto, tome cuidado, pois podem haver times que coletivamente não estão indo bem, que podem ter um ou dois jogadores potenciais que acabam carregando o time. Assim, caso tenha mais tempo, pode começar a investigar esses jogadores. Posteriormente, em outros posts, vamos trazer algumas métricas para facilitar e evidenciar esses jogadores!</p>
+</section>
+<section id="a-mina-de-ouro-o-poder-da-ia-que-nada-mais-é-que-estatística" class="level3">
+<h3 class="anchored" data-anchor-id="a-mina-de-ouro-o-poder-da-ia-que-nada-mais-é-que-estatística">A mina de ouro, o poder da IA, que nada mais é que Estatística…</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="IM3.png" class="img-fluid figure-img" width="400"></p>
+</figure>
+</div>
+<p>Conforme ressaltei, a média é muito útil e quanto mais formas você utilizar, mais útil ela será! No entanto, quando nosso objetivo é formular uma análise de modo que possamos fazer as melhores escolhas em situações complexas, como um jogo de futebol, onde muitos fatores interferem nos resultados das partidas, podemos requisitar técnicas mais avançadas. Na grande maioria das vezes, essas técnicas são mais eficientes e embasadas do que apenas usar a média a olho nu, como os métodos de modelagem preditiva!</p>
+<p>Um dos motivos para usar modelagem é que, quanto mais informações temos à nossa disposição para tomar decisões, mais podemos tender a sobrecarregar nossa mente e não considerar todas as variáveis, nos prendendo apenas àquela que nosso cérebro intuitivamente dá um peso maior. Por exemplo, eu posso ter todas as informações de médias que já exemplifiquei, mas posso tender a confiar mais na média histórica, ignorando outros elementos. Então, para tentar escolher o melhor jogador possível, quais seriam as variáveis de maior importância? Será realmente a média histórica, a média nos últimos 10 jogos? Regularidade? A modelagem considera tudo isso e ainda mais em suas previsões, coisa que o cérebro humano não conseguiria ponderar e encontrar a melhor solução possível.</p>
+<p>A modelagem nos permite incluir o máximo de fatores possíveis que possam impactar na performance do atleta no Cartola, como a pontuação média do jogador, da equipe e até do adversário nos últimos 3, 5, 10, 38 jogos, tanto jogando em casa, fora ou no geral. Podemos adicionar também as variáveis mencionadas de regularidade e muitas outras, a criatividade e o conhecimento futebolístico podem e devem ser explorados. No fim, você terá as variáveis mais importantes para prever uma futura pontuação, gerando visuais dos jogadores com maior probabilidade de mitar na rodada, ou então os jogadores com maior pontuação esperada.</p>
+<p>Aqui ainda não vou me aprofundar nos detalhes de como fazer um modelo preditivo, mas sim explicar do que ele é capaz. Mas será que devemos confiar cegamente no modelo preditivo? Então, como mencionado, no momento de tomar uma decisão temos nossos vieses e julgamentos. Quando terceirizamos isso para um modelo, reparamos que as variáveis que adicionamos no nosso modelo também são baseadas nos nossos julgamentos. Porém, o modelo consegue selecionar a melhor combinação das variáveis e quais mais ajudam a prever de forma efetiva os jogadores potenciais. Ainda há outro fator a considerar: nem sempre na vida temos acesso a todas as informações possíveis para tomar uma decisão. Por exemplo, não temos a informação da qualidade do treinamento do jogador antes de uma rodada, variável que poderia ser importante para prever o desempenho dele. A questão mental do jogador, as ideias de jogo do técnico para determinadas partidas e por aí vai. O modelo não considera isso porque não há essa informação. Na prática, isso pode ser chamado de efeito aleatório que o modelo não consegue captar. Além disso, uma boa prática importante é unir as recomendações dos jogadores com maior potencial identificados nos modelos com suas opções previamente selecionadas a partir de uma análise das médias ou palpites intuitivos. Uma outra abordagem é, a partir das recomendações, começar a analisar as opções possíveis, limitando seu processo de escolha, diminuindo o tempo que passa cruzando informações e indo diretamente aos jogadores potenciais.</p>
+<p>Em sequência, apresento um visual com resultados da modelagem ao longo de várias partidas, no segundo semestre de 2024.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="IMG4.png" class="img-fluid figure-img" width="800"></p>
+</figure>
+</div>
+<p>Usando modelos preditivos, conseguimos prever de dois modos: a probabilidade de algo acontecer ou um valor numérico, como a pontuação do jogador. Conseguimos realizar a previsão antes dos jogos acontecerem com base em dados passados. No visual abordado, temos a pontuação média histórica no período, onde o Estevão lidera com 10.1 pontos. Em seguida, temos uma média da pontuação esperada (ou prevista) dos jogadores por um tipo de modelo, onde o jogador que tem maior esperança de pontuar bem é o Pedro, com 8.1 ao longo das rodadas. Repare que, confrontando a pontuação esperada dele com a pontuação real, temos que a real é de 9.5. Então, na prática, ao longo das rodadas, a pontuação dele foi subestimada a partir das variáveis incluídas no modelo. Assim, ele, de certa forma, surpreendeu ainda mais o modelo ao longo do tempo, uma vez que na média selecionamos o Pedro mais vezes para cogitar sua escalação.</p>
+<p>Além do Pedro, há outros jogadores como o Arrascaeta, que aparecem como os identificados pelo modelo ao longo do tempo com maior possibilidade de pontuar bem nas rodadas. Lembrando que esses jogadores indicados tiveram suas pontuações estimadas a partir de resultados passados, sendo assim, o modelo não sabia de nada do jogo atual antes de realizar a previsão, uma informação muito importante que pode passar desapercebida.</p>
+<p>Outra forma de visualizarmos os jogadores com maior potencial de irem bem nas rodadas é a partir da probabilidade. Em outro visual, podemos ver qual o percentual de chance médio dos jogadores no período ‘mitarem’ nas rodadas. Arrascaeta lidera com 44%, seguido pelo Pedro e Hulk. Repare que essas indicações são diferentes da pontuação esperada, uma vez que cada tipo de modelo pode considerar diferentes variáveis como mais relevantes para o que se deseja prever. O interessante é que conseguimos juntar diferentes opiniões de processos decisórios robustos para, no fim, junto com nossa visão de mundo, tomar melhores decisões.</p>
+</section>
+<section id="investigando-jogadores" class="level3">
+<h3 class="anchored" data-anchor-id="investigando-jogadores">Investigando Jogadores!</h3>
+<p>Ao passar por todas essas etapas decisórias, no final podemos ainda ficar com dúvida na escolha de um jogador. O que podemos fazer é chegar no nível parça do Neymar! No visual a seguir, podemos especificar o jogador e mergulhar em mais alguns detalhes para complementar nossa decisão final.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="IMG5.png" class="img-fluid figure-img" width="800"></p>
+</figure>
+</div>
+<p>Como podemos ver, conseguimos entrar em mais alguns dos muitos detalhes dos jogadores. Um deles é verificar como está o desempenho médio das métricas, como pontuação em casa e fora, nos últimos 5 jogos. Além disso, conseguimos ver a pontuação prevista e a probabilidade de mitagem ao longo dos meses. No mês de agosto, por exemplo, o modelo alerta uma queda no desempenho esperado do jogador, podendo ser levado em consideração ao longo desse período na escalação dele ou de outro jogador que possa estar em ascensão.</p>
+</section>
+</section>
+</section>
+<section id="conclusão" class="level1">
+<h1>Conclusão</h1>
+<p>Dito isso, quanto mais informações relevantes reunirmos e mais recursos, como a modelagem, tivermos em mãos, mais simples e eficazes serão nossas decisões. Tudo isso usando fatos e dados, sem deixar de fora todo o nosso conhecimento da área, neste caso, o futebol e o Cartola FC! Em qualquer área de decisão, lembre-se de que os conceitos abordados podem ser expandidos para além dela, no seu empreendimento, profissão, produtividade etc.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiada");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiada");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
