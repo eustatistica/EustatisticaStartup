@@ -101,7 +101,7 @@ criar_tabela <- function(dados) {
 
 Recentemente, fizemos um post bem explicativo sobre o poder da estatística de nos recomendar boas experiências. A premissa é a seguinte: e se você pudesse contar com a ajuda de centenas de amigos que têm gostos musicais semelhantes aos seus e, assim, receber deles indicações das músicas que provavelmente você gostaria de ouvir?
 
-Imagine poder reviver aquela sensação incrível de escutar uma música tão boa que você quer repetir várias vezes. Além disso, imagine a emoção de descobrir uma excelente música pela primeira vez! Se quiser se aprofundar nesse tema, recomendo fortemente que veja este [post](blog/2025-02-13/recomende.qmd). Lá, você encontrará exemplos de como criar um modelo de recomendação usando estatística, além de aplicações práticas em diversas áreas, inclusive no seu negócio!
+Imagine poder reviver aquela sensação incrível de escutar uma música tão boa que você quer repetir várias vezes. Além disso, imagine a emoção de descobrir uma excelente música pela primeira vez! Se quiser se aprofundar nesse tema, recomendo fortemente que veja este [post](https://eustatistica.github.io/EustatisticaStartup/blog/2025-02-13/recomende). Lá, você encontrará exemplos de como criar um modelo de recomendação usando estatística, além de aplicações práticas em diversas áreas, inclusive no seu negócio!
 
 Neste post, vamos nos concentrar em mostrar um produto final: um sistema de recomendação criado a partir das músicas mais escutadas no Spotify. Falaremos sobre como obtivemos a base de dados, a metodologia usada para criar o modelo de recomendação, bem como a criação de características para comparar as músicas e, finalmente, mostrar as mais semelhantes entre si.
 
@@ -125,7 +125,7 @@ Para criar um sistema de recomendação, precisamos da matéria-prima mais impor
 
 Essa base de dados traz informações bem interessantes, que ajudam a definir as características das músicas. É com esses dados que calculamos a semelhança entre as músicas e, no final, conseguimos recomendar as mais parecidas com aquela que você já gosta. Assim, você pode descobrir novas músicas e ter experiências incríveis!
 
-Novamente, se quiser se aprofundar nos detalhes dos cálculos e códigos para criar um sistema como esse, ou até mesmo aplicar essa ideia em alguma área da sua vida, acesse o [post](blog/2025-02-13/recomende.qmd). Lá, explicamos tudo direitinho!
+Novamente, se quiser se aprofundar nos detalhes dos cálculos e códigos para criar um sistema como esse, ou até mesmo aplicar essa ideia em alguma área da sua vida, acesse o [post](https://eustatistica.github.io/EustatisticaStartup/blog/2025-02-13/recomende). Lá, explicamos tudo direitinho!
 
 <br>
 

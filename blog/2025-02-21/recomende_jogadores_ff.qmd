@@ -20,6 +20,71 @@ format:
 
 ---
 
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+
+library(DT)
+
+criar_tabela <- function(dados) {
+  datatable(
+    dados,
+    extensions = 'ColReorder',  
+    options = list(
+      dom = 'lfrtip',  
+      paging = TRUE,   
+      pageLength = 5,  
+      lengthChange = TRUE,  
+      scrollX = TRUE,  
+      scrollCollapse = TRUE,  
+      columnDefs = list(
+        list(
+          targets = "_all", 
+          searchable = TRUE  
+        )
+      ),
+      language = list(
+        search = "Pesquisar:",
+        lengthMenu = "Mostrar _MENU_ entradas",
+        info = "Mostrando _START_ a _END_ de _TOTAL_ entradas",
+        infoEmpty = "Mostrando 0 a 0 de 0 entradas",
+        infoFiltered = "(filtrado de _MAX_ entradas totais)",
+        paginate = list(
+          first = "Primeiro",
+          previous = "Anterior",
+          `next` = "Próximo",
+          last = "Último"
+        ),
+        emptyTable = "Nenhum dado disponível na tabela",
+        zeroRecords = "Nenhum registro correspondente encontrado"
+      ),
+      initComplete = JS(
+        "function(settings, json) {",
+        "$(this.api().table().header()).css({'background-color': '#15202B', 'color': '#FFFFFF'});",
+        "$(this.api().table().body()).css({'background-color': '#15202B', 'color': '#FFFFFF'});",
+        "$(this.api().table().footer()).css({'background-color': '#15202B', 'color': '#FFFFFF'});",  
+        "$(this.api().table().container()).css({'background-color': '#15202B', 'color': '#FFFFFF', 'border': '2px solid #1DA1F2'});",  # Adiciona borda azul ao redor da tabela
+        "$('.dataTables_length select').css({'background-color': '#15202B', 'color': '#FFFFFF'});",  
+        "$('.dataTables_info').css({'background-color': '#15202B', 'color': '#FFFFFF'});",  
+        "$('.dataTables_paginate').css({'background-color': '#15202B', 'color': '#FFFFFF'});",  
+        "$('.dataTables_processing').css({'background-color': '#15202B', 'color': '#FFFFFF'});",  
+        "$('.dataTables_filter input').css({'background-color': '#15202B', 'color': '#FFFFFF', 'border': '1px solid #1DA1F2'});",  
+        "}"
+      )
+    ),
+    callback = JS(
+      "table.on('init.dt', function() {",
+      "$('.dataTables_filter input').attr('placeholder', 'Pesquisar...');", 
+      "$('.dataTables_filter input').css({'background-image': 'url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/svgs/solid/search.svg)', 'background-position': '10px center', 'background-repeat': 'no-repeat', 'padding-left': '30px'});",
+      "});"
+    )
+  )
+}
+
+
+```
+
 <!--
 -->
 
@@ -35,9 +100,28 @@ Enfim, a inspiração fica apenas nas "ranqueadas da vida". Mas e aí, quais jog
 
 Além dessa análise, também traremos uma comparação entre os jogadores da GWL Elite e os da Qualifier. Quais jogadores amadores mais se assemelham aos MVPs da GWL Mobile? E uma grande novidade que vamos trazer é um aplicativo para você, que é jogador casual, descobrir qual PRO você mais se parece!
 
-## Os Jogadores mais parecidos da Copa GWL Mobile {.justify}
+## Os Jogadores mais parecidos da Copa GWL Mobile Elite {.justify}
 
-Em produção...
+<br>
+
+```{r}
+#| warning: false
+#| message: false
+#| results: 'asis'
+
+require(dplyr)
+
+library(DT)
+require(data.table)
+dados = fread(paste0("SEMELHANTES_FF",".csv"),header = T,encoding = 'Latin-1',dec = ',',sep = ';',na.strings = c('null','NA'))
+dados$nivel_de_similaridade = round(dados$nivel_de_similaridade,0)
+
+criar_tabela(dados |> arrange(-nivel_de_similaridade))
+
+```
+
+
+<br>
 
 ## Os Jogadores do Amador (GWL Qualifier) mais parecidos com os Jogadores de Elite {.justify}
 
@@ -57,5 +141,5 @@ Essa análise utiliza uma técnica chamada sistema de recomendação, que empreg
 
 Caso queira entender mais sobre esse tipo de análise, deixarei alguns posts relacionados :
 
-- [Experiências Músicas e os Sistemas de Recomendações](blog/2025-02-14/recomende_musicas.qmd)
-- [Como Construir um Modelo de Recomendação?](blog/2025-02-13/recomende.qmd)
+- [Experiências Musicais e os Sistemas de Recomendações](https://eustatistica.github.io/EustatisticaStartup/blog/2025-02-14/recomende_musicas)
+- [Como Construir um Modelo de Recomendação?](https://eustatistica.github.io/EustatisticaStartup/blog/2025-02-13/recomende)
