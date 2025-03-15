@@ -1,0 +1,72 @@
+---
+title: 'Um Raio-X do seu Empreendimento'
+author: "Eustatística"
+date: 2025-01-01
+date-format: DD/MM/YYYY
+image: logo.jpeg
+categories: [Empresas, Negócios, Startups, Dados, Visuais, Power BI, Estatística]
+description: ""
+language: _custom.yml
+page-break-after: always
+format:
+  html:
+   theme: darkly
+   toc: true
+   toc-location: right
+   toc-depth: 3
+   code-fold: true
+   code-summary: "Mostre o Código"
+   css: styles.css
+
+---
+
+<!--
+-->
+
+## Obtenha um Raio-X do seu Negócio! {.justify}
+
+Imagine que você tem um minishopping, um espaço onde sua clientela pode lanchar algo como um hambúrguer ou apenas comer um pão de queijo na padaria. Além disso, há um lugar para tomar drinks e consumir churrasco, com carnes fornecidas pelo próprio açougue. Essas carnes, aliás, são as mais frescas da região e podem ser compradas para levar para casa.
+
+Se precisar de produtos para uso doméstico ou frutas frescas, o espaço também oferece uma minimercearia e um hortifruti. Os alimentos são fresquinhos, e, se você comer algum petisco no bar, saiba que eles vêm direto de lá!
+
+Esse exemplo ilustrativo é interessante e mostra muito bem o poder que os dados podem proporcionar para diversos tipos de negócios. A seguir, veremos como extrair o "Raio-X" desse negócio.
+
+## Visão Geral {.justify}
+
+Está perdido com o resumo do balanço do seu negócio? Não sabe como está sua receita ao longo do tempo, ou quais são os produtos mais recorrentes e lucrativos? Enxergue com mais clareza e comece a tomar decisões melhores, sem achismos!
+
+![](1.png){fig-align="center" width="800"}
+
+## Categorias dos Produtos Vendidos {.justify}
+
+Visualize o impacto de cada categoria de produtos vendidos no seu empreendimento!
+
+![](2.png){fig-align="center" width="800"}
+
+## Volume de Vendas {.justify}
+
+Manuseie seu estoque com mais precisão e acompanhe o volume de vendas dos seus produtos ao longo do tempo! Assim, você pode antecipar altas demandas, realizar ofertas em períodos de baixa e muito mais.
+
+![](3.png){fig-align="center" width="800"}
+
+## Clientela Fiel {.justify}
+
+Gamifique, premie e fidelize ainda mais seus clientes com base nos tipos de consumo da sua loja!
+
+![](4.png){fig-align="center" width="800"}
+
+
+## Conhecendo seus Clientes {.justify}
+
+Entenda ainda mais o perfil dos seus clientes e ofereça um serviço cada vez mais personalizado!
+
+![](5.png){fig-align="center" width="800"}
+
+
+## Posts Relacionados {.justify}
+
+Para saber mais sobre como podemos ajudar a potencializar o seu negócio, confira algumas leituras recomendadas abaixo!
+
+- [Use Dados para Tomar Decisões e Elimine Viéses!](https://eustatistica.github.io/EustatisticaStartup/blog/2024-10-08/cfc1)
+- [Como Construir um Modelo de Recomendação para seu Negócio?](https://eustatistica.github.io/EustatisticaStartup/blog/2025-02-13/recomende)
+- [Experiências Musicais e os Sistemas de Recomendações](https://eustatistica.github.io/EustatisticaStartup/blog/2025-02-14/recomende_musicas)

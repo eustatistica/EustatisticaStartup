@@ -1,0 +1,20 @@
+{
+  "listingMap": {
+    "blog.qmd": [
+      "blog"
+    ],
+    "page2.qmd": [
+      "apl_trb"
+    ],
+    "conte.qmd": [
+      "conte"
+    ],
+    "amostras.qmd": [
+      "amostras"
+    ],
+    "zamostras.qmd": [
+      "amostras",
+      "zamostras"
+    ]
+  }
+}

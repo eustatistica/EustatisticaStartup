@@ -1,0 +1,32 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  google-analytics: "G-1Y9PT8DKMS"
+  title: ""
+  navbar:
+    left:
+      - href: apage1.qmd
+        text: Início
+      - href: page5.qmd
+        text: EAFC IA Experience
+      - href: zamostras.qmd
+        text: Amostras de Serviços!
+      - href: page2.qmd
+        text: Aplicações e Trabalhos
+      - href: blog.qmd
+        text: Blog
+      - href: conte.qmd
+        text: Conte-me mais!
+      - href: page3.qmd
+        text: Sobre
+      - href: page4.qmd
+        text: Contato          
+format:
+  html:
+    lang: pt
+    theme: darkly
+    css: styles.css
+    toc: true
+
