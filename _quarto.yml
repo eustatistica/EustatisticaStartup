@@ -11,6 +11,8 @@ website:
         text: Início
       - href: page5.qmd
         text: EAFC IA Experience
+      - href: zamostras.qmd
+        text: Amostras de Serviços!
       - href: page2.qmd
         text: Aplicações e Trabalhos
       - href: blog.qmd
