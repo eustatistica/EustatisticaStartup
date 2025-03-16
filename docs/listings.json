@@ -1,5 +1,11 @@
 [
   {
+    "listing": "/zamostras.html",
+    "items": [
+      "/zamostras/2025-01-01/raioxempresa.html"
+    ]
+  },
+  {
     "listing": "/blog.html",
     "items": [
       "/blog/2025-02-21/recomende_jogadores_ff.html",
@@ -26,18 +32,6 @@
     "listing": "/page2.html",
     "items": [
       "/apl_trb/2024-04-15/confiablidade.html"
-    ]
-  },
-  {
-    "listing": "/amostras.html",
-    "items": [
-      "/amostras/2025-01-01/raioxempresa.html"
-    ]
-  },
-  {
-    "listing": "/zamostras.html",
-    "items": [
-      "/zamostras/2025-01-01/raioxempresa.html"
     ]
   }
 ]

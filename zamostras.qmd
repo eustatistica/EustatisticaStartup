@@ -14,4 +14,3 @@ listing-page-category-all: "Tudo"
 toc-title-website: "Nesta Página"
 lang: pt-br
 ---
-

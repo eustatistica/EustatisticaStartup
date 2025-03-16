@@ -113,7 +113,7 @@ require(dplyr)
 
 library(DT)
 require(data.table)
-dados = fread(paste0("SEMELHANTES_FF",".csv"),header = T,encoding = 'Latin-1',dec = ',',sep = ';',na.strings = c('null','NA'))
+dados = fread(paste0("SEMELHANTES_FF_V2",".csv"),header = T,encoding = 'Latin-1',dec = ',',sep = ';',na.strings = c('null','NA'))
 dados$nivel_de_similaridade = round(dados$nivel_de_similaridade,0)
 
 criar_tabela(dados |> arrange(-nivel_de_similaridade))
@@ -125,7 +125,26 @@ criar_tabela(dados |> arrange(-nivel_de_similaridade))
 
 ## Os Jogadores do Amador (GWL Qualifier) mais parecidos com os Jogadores de Elite {.justify}
 
-Em produção...
+<br>
+
+```{r}
+#| warning: false
+#| message: false
+#| results: 'asis'
+
+require(dplyr)
+
+library(DT)
+require(data.table)
+dados = fread(paste0("SEMELHANTES_FF",".csv"),header = T,encoding = 'Latin-1',dec = ',',sep = ';',na.strings = c('null','NA'))
+dados$nivel_de_similaridade = round(dados$nivel_de_similaridade,0)
+
+criar_tabela(dados |> arrange(-nivel_de_similaridade))
+
+```
+
+
+<br>
 
 ## Aplicação para Jogadores Casuais! (de CS ou Ranqueada) {.justify}
 
